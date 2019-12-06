@@ -1,6 +1,6 @@
 === Plugin Name ===
-Contributors: AndyMardell
-Tags: comments, spam
+Contributors: mardellme
+Tags: woocommerce, dispatch, countdown
 Requires at least: 4.0
 Tested up to: 5.3
 Requires PHP: 5.6
