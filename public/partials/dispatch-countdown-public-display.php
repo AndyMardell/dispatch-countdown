@@ -20,15 +20,13 @@ do_action( 'dispatch_countdown_before_main_content' );
 		<div class="dispatch-countdown__inner">
 			<?php do_action( 'dispatch_countdown_prepend_main_content' ); ?>
 			<p>
-				<span>
-					<?php echo esc_html( $wording ); ?>
-					<span
-						class="dispatch-countdown__time"
-						id="dispatch-countdown__time"
-						data-for="<?php echo esc_attr( $product_id ); ?>"
-					>
-						<?php echo esc_html( $countdown ); ?>
-					</span>
+				<?php echo esc_html( $wording ); ?>
+				<span
+					class="dispatch-countdown__time"
+					id="dispatch-countdown__time"
+					data-for="<?php echo esc_attr( $product_id ); ?>"
+				>
+					<?php echo esc_html( $countdown ); ?>
 				</span>
 			</p>
 			<?php do_action( 'dispatch_countdown_append_main_content' ); ?>

@@ -72,249 +72,146 @@ class Dispatch_Countdown_Admin {
 	}
 
 	/**
-	 * Add plugin settings page.
+	 * Add settings section
 	 *
-	 * @since    1.0.0
+	 * @param array $sections Array of existing sections
+	 * @since       1.0.0
 	 */
-	public function add_plugin_page() {
-		add_options_page(
-			'Dispatch Countdown',
-			'Dispatch Countdown',
-			'manage_options',
-			'dispatch-countdown-admin',
-			array( $this, 'create_admin_page' )
-		);
-	}
-
-	/**
-	 * Create plugin settings page.
-	 *
-	 * @since    1.0.0
-	 */
-	public function create_admin_page() {
-
-		$this->options = get_option( 'dispatch_countdown_options' );
-
-		require_once plugin_dir_path( __FILE__ ) . 'partials/dispatch-countdown-admin-display.php';
-
+	public function add_settings_section( $sections ) {
+		$sections['dispatch_countdown'] = __( 'Dispatch Countdown', 'dispatch-countdown' );
+		return $sections;
 	}
 
 	/**
 	 * Init plugin settings page.
 	 *
-	 * @since    1.0.0
+	 * @param array  $settings        Array of settings
+	 * @param string $current_section ID of current section
+	 * @since        1.0.0
 	 */
-	public function page_init() {
-
-		register_setting(
-			'dispatch_countdown_settings_fields',
-			'dispatch_countdown_options',
-			array( $this, 'sanitize' )
-		);
-
-		add_settings_section(
-			'dispatch_countdown_global_settings',
-			'Global Settings',
-			null,
-			'dispatch-countdown-admin'
-		);
-
-		add_settings_field(
-			'enabled',
-			'Enabled',
-			array( $this, 'enabled_callback' ),
-			'dispatch-countdown-admin',
-			'dispatch_countdown_global_settings'
-		);
-
-		add_settings_field(
-			'wording',
-			'Wording',
-			array( $this, 'wording_callback' ),
-			'dispatch-countdown-admin',
-			'dispatch_countdown_global_settings'
-		);
-
-		add_settings_section(
-			'dispatch_countdown_time_settings',
-			'Time Settings',
-			array( $this, 'time_settings_info' ),
-			'dispatch-countdown-admin'
-		);
-
-		add_settings_field(
-			'monday',
-			'Monday',
-			array( $this, 'day_callback' ),
-			'dispatch-countdown-admin',
-			'dispatch_countdown_time_settings',
-			'monday'
-		);
-
-		add_settings_field(
-			'tuesday',
-			'Tuesday',
-			array( $this, 'day_callback' ),
-			'dispatch-countdown-admin',
-			'dispatch_countdown_time_settings',
-			'tuesday'
-		);
-
-		add_settings_field(
-			'wednesday',
-			'Wednesday',
-			array( $this, 'day_callback' ),
-			'dispatch-countdown-admin',
-			'dispatch_countdown_time_settings',
-			'wednesday'
-		);
-
-		add_settings_field(
-			'thursday',
-			'Thursday',
-			array( $this, 'day_callback' ),
-			'dispatch-countdown-admin',
-			'dispatch_countdown_time_settings',
-			'thursday'
-		);
-
-		add_settings_field(
-			'friday',
-			'Friday',
-			array( $this, 'day_callback' ),
-			'dispatch-countdown-admin',
-			'dispatch_countdown_time_settings',
-			'friday'
-		);
-
-		add_settings_field(
-			'saturday',
-			'Saturday',
-			array( $this, 'day_callback' ),
-			'dispatch-countdown-admin',
-			'dispatch_countdown_time_settings',
-			'saturday'
-		);
-
-		add_settings_field(
-			'sunday',
-			'Sunday',
-			array( $this, 'day_callback' ),
-			'dispatch-countdown-admin',
-			'dispatch_countdown_time_settings',
-			'sunday'
-		);
-
-		add_settings_section(
-			'dispatch_countdown_product_blacklist',
-			'Product Blacklist',
-			array( $this, 'product_blacklist_info' ),
-			'dispatch-countdown-admin'
-		);
-
-		add_settings_field(
-			'blacklist',
-			'Product IDs',
-			array( $this, 'blacklist_callback' ),
-			'dispatch-countdown-admin',
-			'dispatch_countdown_product_blacklist'
-		);
-
-	}
-
-	/**
-	 * Sanitize each setting field as needed
-	 *
-	 * @since    1.0.0
-	 * @param array $input Contains all settings fields as array keys.
-	 */
-	public function sanitize( $input ) {
-
-		$new_input = array();
-
-		foreach ( $input as $key => $value ) {
-			$new_input[ $key ] = sanitize_text_field( $value );
+	public function settings_page_init( $settings, $current_section ) {
+		if ( 'dispatch_countdown' !== $current_section ) {
+			return $settings;
 		}
 
-		return $new_input;
+		$dispatch_settings = array();
 
-	}
+		$dispatch_settings[] = array(
+			'name' => __( 'Dispatch Countdown Settings', 'dispatch-countdown' ),
+			'type' => 'title',
+			'css'  => 'min-width:300px;',
+			'desc' => __( 'The following options are used to configure the dispatch countdown banner', 'dispatch-countdown' ),
+			'id'   => 'dispatch_countdown',
+		);
 
-	/**
-	 * Print time settings info text
-	 *
-	 * @since    1.0.0
-	 */
-	public function time_settings_info() {
+		$dispatch_settings[] = array(
+			'name' => __( 'Enable', 'dispatch-countdown' ),
+			'id'   => 'dispatch_countdown_enabled',
+			'type' => 'checkbox',
+			'css'  => 'min-width:300px;',
+			'desc' => __( 'Enable the dispatch countdown', 'dispatch-countdown' ),
+		);
 
-		echo 'Set the times the banner should show. Note that the end time is
-		used to calculate the time remaining, and the start time is when the
-		banner starts showing.<br>E.g. 1200-1600';
+		$dispatch_settings[] = array(
+			'name'     => __( 'Wording', 'dispatch-countdown' ),
+			'desc_tip' => __( 'The text to be shown before the countdown', 'dispatch-countdown' ),
+			'id'       => 'dispatch_countdown_wording',
+			'type'     => 'text',
+			'default'  => '🕐 Same day dispatch if you order within',
+		);
 
-	}
+		$dispatch_settings[] = array(
+			'type' => 'sectionend',
+			'id'   => 'dispatch_countdown',
+		);
 
-	/**
-	 * Print blacklist info text
-	 *
-	 * @since    1.0.0
-	 */
-	public function product_blacklist_info() {
+		$dispatch_settings[] = array(
+			'name' => __( 'Schedule', 'dispatch-countdown' ),
+			'type' => 'title',
+			'desc' => __( 'Decides when the banner should show. If the start time is 12:00 and the end time is 16:00, the banner will show from midday and countdown until 4pm. Leave blank to disable.', 'dispatch-countdown' ),
+			'id'   => 'dispatch_countdown_schedule',
+		);
 
-		echo 'List of product IDs to blacklist. These products will not allow
-		the banner to show, regardless of stock/status.<br>E.g. 363,221,125';
+		$dispatch_settings[] = array(
+			'name'     => __( 'Monday', 'dispatch-countdown' ),
+			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
+			'id'       => 'dispatch_countdown_monday',
+			'type'     => 'text',
+			'default'  => '12:00-16:00',
+		);
 
-	}
+		$dispatch_settings[] = array(
+			'name'     => __( 'Tuesday', 'dispatch-countdown' ),
+			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
+			'id'       => 'dispatch_countdown_tuesday',
+			'type'     => 'text',
+			'default'  => '12:00-16:00',
+		);
 
-	/**
-	 * Enabled settings field callback
-	 *
-	 * @since    1.0.0
-	 */
-	public function enabled_callback() {
+		$dispatch_settings[] = array(
+			'name'     => __( 'Wednesday', 'dispatch-countdown' ),
+			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
+			'id'       => 'dispatch_countdown_wednesday',
+			'type'     => 'text',
+			'default'  => '12:00-16:00',
+		);
 
-		$option_value = isset( $this->options['enabled'] ) && $this->options['enabled'] ? 1 : 0;
+		$dispatch_settings[] = array(
+			'name'     => __( 'Thursday', 'dispatch-countdown' ),
+			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
+			'id'       => 'dispatch_countdown_thursday',
+			'type'     => 'text',
+			'default'  => '12:00-16:00',
+		);
 
-		echo '<input type="checkbox" id="enabled" name="dispatch_countdown_options[enabled]" value="1" ' . checked( 1, $option_value, false ) . ' />';
+		$dispatch_settings[] = array(
+			'name'     => __( 'Friday', 'dispatch-countdown' ),
+			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
+			'id'       => 'dispatch_countdown_friday',
+			'type'     => 'text',
+			'default'  => '12:00-16:00',
+		);
 
-	}
+		$dispatch_settings[] = array(
+			'name'     => __( 'Saturday', 'dispatch-countdown' ),
+			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
+			'id'       => 'dispatch_countdown_saturday',
+			'type'     => 'text',
+			'default'  => '09:00-12:00',
+		);
 
-	/**
-	 * Wording settings field callback
-	 *
-	 * @since    1.0.0
-	 */
-	public function wording_callback() {
+		$dispatch_settings[] = array(
+			'name'     => __( 'Sunday', 'dispatch-countdown' ),
+			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
+			'id'       => 'dispatch_countdown_sunday',
+			'type'     => 'text',
+		);
 
-		$option_value = isset( $this->options['wording'] ) ? esc_attr( $this->options['wording'] ) : '';
+		$dispatch_settings[] = array(
+			'type' => 'sectionend',
+			'id'   => 'dispatch_countdown_schedule',
+		);
 
-		echo '<textarea id="wording" name="dispatch_countdown_options[wording]">' . esc_html( $option_value ) . '</textarea>';
+		$dispatch_settings[] = array(
+			'name' => __( 'Advanced Options', 'dispatch-countdown' ),
+			'type' => 'title',
+			'id'   => 'dispatch_countdown_schedule',
+		);
 
-	}
+		$dispatch_settings[] = array(
+			'name'     => __( 'Blacklisted Products', 'dispatch-countdown' ),
+			'desc'     => __( 'List of WooCommerce product IDs to blacklist', 'dispatch-countdown' ),
+			'desc_tip' => __( 'Format: 12,24,122', 'dispatch-countdown' ),
+			'id'       => 'dispatch_countdown_blacklist',
+			'type'     => 'text',
+		);
 
-	/**
-	 * Day settings field callback
-	 *
-	 * @since    1.0.0
-	 * @param string $option_id option field ID such as monday.
-	 */
-	public function day_callback( $option_id ) {
+		$dispatch_settings[] = array(
+			'type' => 'sectionend',
+			'id'   => 'dispatch_countdown_schedule',
+		);
 
-		$option_value = isset( $this->options[ $option_id ] ) ? esc_attr( $this->options[ $option_id ] ) : '';
-
-		echo '<input type="text" id="' . esc_attr( $option_id ) . '" name="dispatch_countdown_options[' . esc_attr( $option_id ) . ']" value="' . esc_attr( $option_value ) . '" />';
-
-	}
-
-	/**
-	 * Blacklist field callback
-	 *
-	 * @since    1.0.0
-	 */
-	public function blacklist_callback() {
-
-		$option_value = isset( $this->options['blacklist'] ) ? esc_attr( $this->options['blacklist'] ) : '';
-
-		echo '<input type="text" id="blacklist" name="dispatch_countdown_options[blacklist]" value="' . esc_attr( $option_value ) . '" />';
+		return $dispatch_settings;
 
 	}
 

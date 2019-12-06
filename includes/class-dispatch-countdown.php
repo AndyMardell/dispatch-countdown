@@ -129,8 +129,8 @@ class Dispatch_Countdown {
 		$plugin_admin = new Dispatch_Countdown_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_files' );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_page' );
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'page_init' );
+		$this->loader->add_filter( 'woocommerce_get_sections_products', $plugin_admin, 'add_settings_section' );
+		$this->loader->add_filter( 'woocommerce_get_settings_products', $plugin_admin, 'settings_page_init', 10, 2 );
 
 	}
 
@@ -142,10 +142,7 @@ class Dispatch_Countdown {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
-
-		$settings = get_option( 'dispatch_countdown_options' );
-
-		if ( ! isset( $settings['enabled'] ) || ! $settings['enabled'] ) {
+		if ( ! get_option( 'dispatch_countdown_enabled' ) ) {
 			return false;
 		}
 

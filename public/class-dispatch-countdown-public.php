@@ -101,8 +101,7 @@ class Dispatch_Countdown_Public {
 		}
 
 		$product_id = $this->product->get_id();
-		$settings   = get_option( 'dispatch_countdown_options' );
-		$wording    = $settings['wording'];
+		$wording    = get_option( 'dispatch_countdown_wording' );
 
 		require_once plugin_dir_path( __FILE__ ) . 'partials/dispatch-countdown-public-display.php';
 
@@ -116,23 +115,20 @@ class Dispatch_Countdown_Public {
 	 * @since 1.0.0
 	 */
 	public function countdown() {
+
 		$time_settings = $this->get_time_settings();
 
 		$timestamp = current_time( 'mysql' );
 		$now       = new DateTime( $timestamp );
 		$today     = strtolower( $now->format( 'l' ) );
 
-		if ( ! $time_settings[ $today ] ||
-			! $this->product ||
-			! $this->product_is_purchasable() ||
-			$this->product_is_blacklisted()
-		) {
+		if ( ! $time_settings[ $today ] || ! $this->should_display() ) {
 			return false;
 		}
 
 		$times     = explode( '-', $time_settings[ $today ] );
-		$time_from = date_create_from_format( 'Gi', (int) $times[0] );
-		$time_to   = date_create_from_format( 'Gi', (int) $times[1] );
+		$time_from = date_create_from_format( 'Gi', (int) str_replace( ':', '', $times[0] ) );
+		$time_to   = date_create_from_format( 'Gi', (int) str_replace( ':', '', $times[1] ) );
 		$diff      = $time_to->getTimestamp() - ( round( $now->getTimestamp() / 60 ) * 60 );
 
 		if ( $now < $time_to && $now > $time_from ) {
@@ -145,29 +141,35 @@ class Dispatch_Countdown_Public {
 	}
 
 	/**
+	 * Should display for product
+	 *
+	 * @since    1.0.0
+	 */
+	private function should_display() {
+
+		return $this->product && $this->product_is_purchasable() && ! $this->product_is_blacklisted();
+
+	}
+
+	/**
 	 * Get time settings
 	 *
-	 * TODO: Something better when checking for times
-	 *
-	 * @since 1.0.0
+	 * @since    1.0.0
 	 */
 	public function get_time_settings() {
-		$time_settings   = get_option( 'dispatch_countdown_options' );
+
 		$processed_times = array();
 
-		foreach ( $time_settings as $key => $value ) {
-			if ( 'wording' === $key ||
-				'blacklist' === $key ||
-				'enabled' === $key
-			) {
-				continue;
-			}
-
-			$new_value               = $value ? $value : false;
-			$processed_times[ $key ] = $new_value;
-		}
+		$processed_times['monday']    = get_option( 'dispatch_countdown_monday' );
+		$processed_times['tuesday']   = get_option( 'dispatch_countdown_tuesday' );
+		$processed_times['wednesday'] = get_option( 'dispatch_countdown_wednesday' );
+		$processed_times['thursday']  = get_option( 'dispatch_countdown_thursday' );
+		$processed_times['friday']    = get_option( 'dispatch_countdown_friday' );
+		$processed_times['saturday']  = get_option( 'dispatch_countdown_saturday' );
+		$processed_times['sunday']    = get_option( 'dispatch_countdown_sunday' );
 
 		return $processed_times;
+
 	}
 
 	/**
@@ -176,6 +178,7 @@ class Dispatch_Countdown_Public {
 	 * @since 1.0.0
 	 */
 	public function get_countdown() {
+
 		if ( ! isset( $_POST['nonce'] ) ||
 			! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'dispatch_countdown' )
 		) {
@@ -186,8 +189,8 @@ class Dispatch_Countdown_Public {
 			die( 'No product' );
 		}
 
-		$product = sanitize_text_field( wp_unslash( $_POST['product'] ) );
-		$this->get_product( (int) $product );
+		$product = (int) sanitize_text_field( wp_unslash( $_POST['product'] ) );
+		$this->get_product( $product );
 
 		$response = array(
 			'status'  => 200,
@@ -226,10 +229,6 @@ class Dispatch_Countdown_Public {
 	 */
 	public function product_is_purchasable() {
 
-		if ( ! $this->product ) {
-			return false;
-		}
-
 		return $this->product->is_purchasable() && $this->product->is_in_stock();
 
 	}
@@ -241,12 +240,7 @@ class Dispatch_Countdown_Public {
 	 */
 	public function product_is_blacklisted() {
 
-		if ( ! $this->product ) {
-			return false;
-		}
-
-		$settings      = get_option( 'dispatch_countdown_options' );
-		$blacklist     = $settings['blacklist'];
+		$blacklist     = get_option( 'dispatch_countdown_blacklist' );
 		$blacklist_arr = explode( ',', $blacklist );
 
 		if ( in_array( (string) $this->product->get_id(), $blacklist_arr, true ) ) {
@@ -254,6 +248,7 @@ class Dispatch_Countdown_Public {
 		}
 
 		return false;
+
 	}
 
 }

@@ -17,6 +17,9 @@
  * Author URI:        mardell.me
  * Text Domain:       dispatch-countdown
  * Domain Path:       /languages
+ *
+ * WC requires at least: 2.2
+ * WC tested up to: 3.8
  */
 
 // If this file is called directly, abort.
@@ -47,6 +50,17 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-dispatch-countdown.php';
  * @since    1.0.0
  */
 function dispatch_run_countdown() {
+
+	if (
+		! in_array(
+			'woocommerce/woocommerce.php',
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
+			apply_filters( 'active_plugins', get_option( 'active_plugins' ) ),
+			true
+		)
+	) {
+		return false;
+	}
 
 	$plugin = new Dispatch_Countdown();
 	$plugin->run();
