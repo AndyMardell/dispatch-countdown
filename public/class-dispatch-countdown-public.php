@@ -54,8 +54,8 @@ class Dispatch_Countdown_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param string $plugin_name       The name of the plugin.
-	 * @param string $version    The version of this plugin.
+	 * @param    string    $plugin_name  The name of the plugin.
+	 * @param    string    $version      The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -112,7 +112,7 @@ class Dispatch_Countdown_Public {
 	/**
 	 * Countdown function
 	 *
-	 * @since 1.0.0
+	 * @since    1.0.0
 	 */
 	public function countdown() {
 
@@ -175,7 +175,7 @@ class Dispatch_Countdown_Public {
 	/**
 	 * Ajax get countdown
 	 *
-	 * @since 1.0.0
+	 * @since    1.0.0
 	 */
 	public function get_countdown() {
 
@@ -225,7 +225,7 @@ class Dispatch_Countdown_Public {
 	/**
 	 * Check if product is purchasable
 	 *
-	 * @since 1.0.0
+	 * @since    1.0.0
 	 */
 	public function product_is_purchasable() {
 
@@ -236,7 +236,7 @@ class Dispatch_Countdown_Public {
 	/**
 	 * Check if product is blacklisted
 	 *
-	 * @since 1.0.0
+	 * @since    1.0.0
 	 */
 	public function product_is_blacklisted() {
 
