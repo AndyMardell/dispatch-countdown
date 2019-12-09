@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Dispatch Countdown ===
 Contributors: mardellme
 Tags: woocommerce, dispatch, countdown
 Requires at least: 4.0
