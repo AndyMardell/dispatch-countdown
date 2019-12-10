@@ -30,6 +30,15 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 1.0.5 =
+* Remove some dist files
+
+= 1.0.4 =
+* No changes - deployment tests only
+
+= 1.0.3 =
+* No changes - deployment tests only
+
 = 1.0.2 =
 * Added icons
 * Added screenshots
