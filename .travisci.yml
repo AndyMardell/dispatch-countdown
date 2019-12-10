@@ -1,0 +1,14 @@
+language: php
+
+php:
+  - 5.6
+  - 7.0
+  - 7.1
+  - 7.3
+
+before_script:
+  - composer install
+  - vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
+
+script:
+  - vendor/bin/phpcs --standard=.phpcs.xml --extensions=php .
