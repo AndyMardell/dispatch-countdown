@@ -24,7 +24,7 @@ do_action( 'dispatch_countdown_before_main_content' );
 				<span
 					class="dispatch-countdown__time"
 					id="dispatch-countdown__time"
-					data-for="<?php echo esc_attr( $product_id ); ?>"
+					data-for="<?php echo esc_attr( $product->get_id() ); ?>"
 				>
 					<?php echo esc_html( $countdown ); ?>
 				</span>

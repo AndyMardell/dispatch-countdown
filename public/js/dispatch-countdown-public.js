@@ -25,11 +25,11 @@
 							success: function (data) {
 								var res = JSON.parse( data )
 
-								if (res.content && res.content !== 'false') {
-									$timer.text( res.content )
-								} else {
-									$( '#dispatch-countdown' ).hide()
+								if ( ! res.content || res.content === 'false') {
+									return $( '#dispatch-countdown' ).hide()
 								}
+
+								$timer.text( res.content )
 							},
 							error: function () {
 								$( '#dispatch-countdown' ).hide()

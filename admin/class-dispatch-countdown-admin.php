@@ -78,8 +78,10 @@ class Dispatch_Countdown_Admin {
 	 * @since       1.0.0
 	 */
 	public function add_settings_section( $sections ) {
+
 		$sections['dispatch_countdown'] = __( 'Dispatch Countdown', 'dispatch-countdown' );
 		return $sections;
+
 	}
 
 	/**
@@ -90,6 +92,7 @@ class Dispatch_Countdown_Admin {
 	 * @since        1.0.0
 	 */
 	public function settings_page_init( $settings, $current_section ) {
+
 		if ( 'dispatch_countdown' !== $current_section ) {
 			return $settings;
 		}

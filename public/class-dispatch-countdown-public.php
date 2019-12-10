@@ -88,6 +88,8 @@ class Dispatch_Countdown_Public {
 	/**
 	 * Display the countdown
 	 *
+	 * Initial display of the countdown before it's updated with ajax
+	 *
 	 * @since    1.0.0
 	 */
 	public function display_countdown() {
@@ -100,8 +102,8 @@ class Dispatch_Countdown_Public {
 			return;
 		}
 
-		$product_id = $this->product->get_id();
-		$wording    = get_option( 'dispatch_countdown_wording' );
+		$product = $this->product;
+		$wording = get_option( 'dispatch_countdown_wording' );
 
 		require_once plugin_dir_path( __FILE__ ) . 'partials/dispatch-countdown-public-display.php';
 
@@ -111,6 +113,8 @@ class Dispatch_Countdown_Public {
 
 	/**
 	 * Countdown function
+	 *
+	 * Works out what the countdown should say. Should return 1h 13m or false.
 	 *
 	 * @since    1.0.0
 	 */
@@ -175,6 +179,9 @@ class Dispatch_Countdown_Public {
 	/**
 	 * Ajax get countdown
 	 *
+	 * An Ajax function which gets the current countdown in order to update the
+	 * node with JS.
+	 *
 	 * @since    1.0.0
 	 */
 	public function get_countdown() {
@@ -189,8 +196,8 @@ class Dispatch_Countdown_Public {
 			die( 'No product' );
 		}
 
-		$product = (int) sanitize_text_field( wp_unslash( $_POST['product'] ) );
-		$this->get_product( $product );
+		$product_id = (int) sanitize_text_field( wp_unslash( $_POST['product'] ) );
+		$this->set_product( $product_id );
 
 		$response = array(
 			'status'  => 200,
@@ -208,15 +215,39 @@ class Dispatch_Countdown_Public {
 	 * @param int $id ID of product.
 	 */
 	public function get_product( $id = false ) {
-		$id = $id ? $id : false;
 
 		do_action( 'dispatch_countdown_before_get_product' );
 
 		if ( ! $this->product ) {
-			$this->product = wc_get_product( $id );
+			$this->set_product( $id );
 		}
 
 		do_action( 'dispatch_countdown_after_get_product' );
+
+		return $this->product;
+
+	}
+
+	/**
+	 * Get product
+	 *
+	 * @since     1.0.0
+	 * @param int $id ID of product.
+	 */
+	public function set_product( $id = false ) {
+
+		if ( $id ) {
+			$this->product = wc_get_product( $id );
+			return $this->product;
+		}
+
+		global $product;
+
+		if ( ! $product ) {
+			return false;
+		}
+
+		$this->product = wc_get_product( $product->get_id() );
 
 		return $this->product;
 
