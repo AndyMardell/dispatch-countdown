@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/AndyMardell/dispatch-countdown.svg?branch=master)](https://travis-ci.com/AndyMardell/dispatch-countdown)
+
 # Dispatch Countdown
 
 A plugin which allows you to display a countdown banner on your WooCommerce product pages.
