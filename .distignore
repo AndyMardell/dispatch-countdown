@@ -1,0 +1,10 @@
+/.git
+/.github
+/.wordpress-org
+
+.distignore
+.gitignore
+.phpcs.xml
+.travisci.yml
+
+README.md

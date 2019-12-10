@@ -66,6 +66,7 @@ class Dispatch_Countdown {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
+
 		$this->version     = defined( 'DISPATCH_COUNTDOWN_VERSION' ) ? DISPATCH_COUNTDOWN_VERSION : '1.0.0';
 		$this->plugin_name = 'dispatch-countdown';
 
@@ -142,6 +143,7 @@ class Dispatch_Countdown {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
+
 		if ( ! get_option( 'dispatch_countdown_enabled' ) ) {
 			return false;
 		}
@@ -164,7 +166,9 @@ class Dispatch_Countdown {
 	 * @since    1.0.0
 	 */
 	public function run() {
+
 		$this->loader->run();
+
 	}
 
 	/**
@@ -175,7 +179,9 @@ class Dispatch_Countdown {
 	 * @return    string    The name of the plugin.
 	 */
 	public function get_plugin_name() {
+
 		return $this->plugin_name;
+
 	}
 
 	/**
@@ -185,7 +191,9 @@ class Dispatch_Countdown {
 	 * @return    Dispatch_Countdown_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
+
 		return $this->loader;
+
 	}
 
 	/**
@@ -195,7 +203,9 @@ class Dispatch_Countdown {
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {
+
 		return $this->version;
+
 	}
 
 }
