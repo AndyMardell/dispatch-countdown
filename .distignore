@@ -5,6 +5,7 @@
 .distignore
 .gitignore
 .phpcs.xml
-.travisci.yml
+.eslintrc.js
+.travis.yml
 
 README.md
