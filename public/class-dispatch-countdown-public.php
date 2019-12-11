@@ -94,6 +94,10 @@ class Dispatch_Countdown_Public {
 	 */
 	public function display_countdown() {
 
+		if ( ! $this->product ) {
+			$this->set_product();
+		}
+
 		do_action( 'dispatch_countdown_before_display_countdown' );
 
 		$countdown = $this->countdown();

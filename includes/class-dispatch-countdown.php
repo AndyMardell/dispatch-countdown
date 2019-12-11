@@ -57,6 +57,15 @@ class Dispatch_Countdown {
 	protected $version;
 
 	/**
+	 * The current instance of the public class
+	 *
+	 * @since 1.0.6
+	 * @access protected
+	 * @var object|Dispatch_Countdown_Public
+	 */
+	protected static $public_instance;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -151,12 +160,11 @@ class Dispatch_Countdown {
 		$plugin_public = new Dispatch_Countdown_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_files' );
-
-		$this->loader->add_action( 'woocommerce_before_single_product', $plugin_public, 'get_product', 1 );
-		$this->loader->add_action( 'woocommerce_before_single_product', $plugin_public, 'display_countdown', 2 );
-
+		$this->loader->add_action( 'woocommerce_before_single_product', $plugin_public, 'display_countdown' );
 		$this->loader->add_action( 'wp_ajax_nopriv_get_countdown', $plugin_public, 'get_countdown' );
 		$this->loader->add_action( 'wp_ajax_get_countdown', $plugin_public, 'get_countdown' );
+
+		self::$public_instance = $plugin_public;
 
 	}
 
@@ -205,6 +213,18 @@ class Dispatch_Countdown {
 	public function get_version() {
 
 		return $this->version;
+
+	}
+
+	/**
+	 * Get an instance of the public class
+	 *
+	 * @since 1.0.6
+	 * @return object|Dispatch_Countdown_Public
+	 */
+	public static function get_public_instance() {
+
+		return self::$public_instance;
 
 	}
 

@@ -4,7 +4,7 @@ Tags: woocommerce, dispatch, countdown
 Requires at least: 4.0
 Tested up to: 5.3
 Requires PHP: 5.6
-Stable tag: 1.0.4
+Stable tag: 1.0.6
 License: GPLv3 or later License
 URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -28,7 +28,33 @@ This section describes how to install the plugin and get it working.
 1. Frontend view
 2. Backend view
 
+== Frequently Asked Questions ==
+
+= How do I move the countdown? =
+
+The countdown must be called at a point where `global $product` is available, so
+make sure to call this plugin after WooCommerce has loaded. To move the
+countdown, you can remove the action and then add it back wherever you want:
+
+```
+/**
+ * Move dispatch countdown
+ */
+function your_theme_move_dispatch_countdown() {
+	$dispatch_countdown = Dispatch_Countdown::get_public_instance();
+	remove_action( 'woocommerce_before_single_product', array( $dispatch_countdown, 'display_countdown' ) );
+	add_action( 'your_theme_before_main_container', array( $dispatch_countdown, 'display_countdown' ) );
+}
+add_action( 'init', 'your_theme_move_dispatch_countdown' );
+```
+
+Replacing `your_theme_before_main_container` with whichever hook you wish
+
 == Changelog ==
+
+= 1.0.6 =
+* Allow dispatch countdown hook to be overridden
+* Update documentation with how to move
 
 = 1.0.5 =
 * Remove some dist files
