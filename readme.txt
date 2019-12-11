@@ -36,8 +36,7 @@ The countdown must be called at a point where `global $product` is available, so
 make sure to call this plugin after WooCommerce has loaded. To move the
 countdown, you can remove the action and then add it back wherever you want:
 
-```
-/**
+`/**
  * Move dispatch countdown
  */
 function your_theme_move_dispatch_countdown() {
@@ -45,8 +44,7 @@ function your_theme_move_dispatch_countdown() {
 	remove_action( 'woocommerce_before_single_product', array( $dispatch_countdown, 'display_countdown' ) );
 	add_action( 'your_theme_before_main_container', array( $dispatch_countdown, 'display_countdown' ) );
 }
-add_action( 'init', 'your_theme_move_dispatch_countdown' );
-```
+add_action( 'init', 'your_theme_move_dispatch_countdown' );`
 
 Replacing `your_theme_before_main_container` with whichever hook you wish
 
