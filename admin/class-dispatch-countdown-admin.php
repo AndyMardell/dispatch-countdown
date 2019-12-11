@@ -120,7 +120,7 @@ class Dispatch_Countdown_Admin {
 			'desc_tip' => __( 'The text to be shown before the countdown', 'dispatch-countdown' ),
 			'id'       => 'dispatch_countdown_wording',
 			'type'     => 'text',
-			'default'  => '🕐 Same day dispatch if you order within',
+			'default'  => __( '🕐 Same day dispatch if you order within', 'dispatch-countdown' ),
 		);
 
 		$dispatch_settings[] = array(
@@ -140,7 +140,7 @@ class Dispatch_Countdown_Admin {
 			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
 			'id'       => 'dispatch_countdown_monday',
 			'type'     => 'text',
-			'default'  => '12:00-16:00',
+			'default'  => __( '12:00-16:00', 'dispatch-countdown' ),
 		);
 
 		$dispatch_settings[] = array(
@@ -148,7 +148,7 @@ class Dispatch_Countdown_Admin {
 			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
 			'id'       => 'dispatch_countdown_tuesday',
 			'type'     => 'text',
-			'default'  => '12:00-16:00',
+			'default'  => __( '12:00-16:00', 'dispatch-countdown' ),
 		);
 
 		$dispatch_settings[] = array(
@@ -156,7 +156,7 @@ class Dispatch_Countdown_Admin {
 			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
 			'id'       => 'dispatch_countdown_wednesday',
 			'type'     => 'text',
-			'default'  => '12:00-16:00',
+			'default'  => __( '12:00-16:00', 'dispatch-countdown' ),
 		);
 
 		$dispatch_settings[] = array(
@@ -164,7 +164,7 @@ class Dispatch_Countdown_Admin {
 			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
 			'id'       => 'dispatch_countdown_thursday',
 			'type'     => 'text',
-			'default'  => '12:00-16:00',
+			'default'  => __( '12:00-16:00', 'dispatch-countdown' ),
 		);
 
 		$dispatch_settings[] = array(
@@ -172,7 +172,7 @@ class Dispatch_Countdown_Admin {
 			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
 			'id'       => 'dispatch_countdown_friday',
 			'type'     => 'text',
-			'default'  => '12:00-16:00',
+			'default'  => __( '12:00-16:00', 'dispatch-countdown' ),
 		);
 
 		$dispatch_settings[] = array(
@@ -180,7 +180,7 @@ class Dispatch_Countdown_Admin {
 			'desc_tip' => __( 'Format: 09:00-16:00', 'dispatch-countdown' ),
 			'id'       => 'dispatch_countdown_saturday',
 			'type'     => 'text',
-			'default'  => '09:00-12:00',
+			'default'  => __( '09:00-12:00', 'dispatch-countdown' ),
 		);
 
 		$dispatch_settings[] = array(

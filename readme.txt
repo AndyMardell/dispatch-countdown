@@ -62,6 +62,7 @@ Replacing `your_theme_before_main_container` with whichever hook you wish
 
 = 1.0.7 (Pre-release) =
 * Update docs
+* Add POT file for translations
 
 = 1.0.6 =
 * Allow dispatch countdown hook to be overridden

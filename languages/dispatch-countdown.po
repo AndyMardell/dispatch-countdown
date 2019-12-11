@@ -1,0 +1,126 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Dispatch Countdown 1.0.6\n"
+"POT-Creation-Date: 2019-12-11 16:38+0000\n"
+"PO-Revision-Date: 2019-12-11 16:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/class-dispatch-countdown-admin.php:82
+msgid "Dispatch Countdown"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:103
+msgid "Dispatch Countdown Settings"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:106
+msgid ""
+"The following options are used to configure the dispatch countdown banner"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:111
+msgid "Enable"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:115
+msgid "Enable the dispatch countdown"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:119
+msgid "Wording"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:120
+msgid "The text to be shown before the countdown"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:123
+msgid "🕐 Same day dispatch if you order within"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:132
+msgid "Schedule"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:134
+msgid ""
+"Decides when the banner should show. If the start time is 12:00 and the end "
+"time is 16:00, the banner will show from midday and countdown until 4pm. "
+"Leave blank to disable."
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:139
+msgid "Monday"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:140
+#: admin/class-dispatch-countdown-admin.php:148
+#: admin/class-dispatch-countdown-admin.php:156
+#: admin/class-dispatch-countdown-admin.php:164
+#: admin/class-dispatch-countdown-admin.php:172
+#: admin/class-dispatch-countdown-admin.php:180
+#: admin/class-dispatch-countdown-admin.php:188
+msgid "Format: 09:00-16:00"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:143
+#: admin/class-dispatch-countdown-admin.php:151
+#: admin/class-dispatch-countdown-admin.php:159
+#: admin/class-dispatch-countdown-admin.php:167
+#: admin/class-dispatch-countdown-admin.php:175
+msgid "12:00-16:00"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:147
+msgid "Tuesday"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:155
+msgid "Wednesday"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:163
+msgid "Thursday"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:171
+msgid "Friday"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:179
+msgid "Saturday"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:183
+msgid "09:00-12:00"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:187
+msgid "Sunday"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:199
+msgid "Advanced Options"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:205
+msgid "Blacklisted Products"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:206
+msgid "List of WooCommerce product IDs to blacklist"
+msgstr ""
+
+#: admin/class-dispatch-countdown-admin.php:207
+msgid "Format: 12,24,122"
+msgstr ""
