@@ -45,8 +45,18 @@ countdown, you can remove the action and then add it back wherever you want:
  * Move dispatch countdown
  */
 function your_theme_move_dispatch_countdown() {
+	// Check the class exists
+	if ( ! class_exists( 'Dispatch_Countdown' ) ) {
+		return;
+	}
+
+	// Get the current instance
 	$dispatch_countdown = Dispatch_Countdown::get_public_instance();
+
+	// Remove the action
 	remove_action( 'woocommerce_before_single_product', array( $dispatch_countdown, 'display_countdown' ) );
+
+	// Add the action back where you like
 	add_action( 'your_theme_before_main_container', array( $dispatch_countdown, 'display_countdown' ) );
 }
 add_action( 'init', 'your_theme_move_dispatch_countdown' );
