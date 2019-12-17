@@ -100,14 +100,15 @@ class Dispatch_Countdown_Public {
 
 		do_action( 'dispatch_countdown_before_display_countdown' );
 
-		$countdown = $this->countdown();
-
-		if ( ! $countdown ) {
+		if ( ! $this->countdown() ) {
 			return;
 		}
 
-		$product = $this->product;
-		$wording = get_option( 'dispatch_countdown_wording' );
+		$dispatch_countdown_content = $this->get_countdown_content(
+			get_option( 'dispatch_countdown_wording' ),
+			$this->product->get_id(),
+			$this->countdown()
+		);
 
 		require_once plugin_dir_path( __FILE__ ) . 'partials/dispatch-countdown-public-display.php';
 
@@ -116,11 +117,52 @@ class Dispatch_Countdown_Public {
 	}
 
 	/**
+	 * The countdown content
+	 *
+	 * Generates HTML and applies filters
+	 *
+	 * @since    1.0.7
+	 * @param    string   $wording The wording from the settings page
+	 * @param    int      $product The product ID
+	 * @param    string   $countdown the countdown content (e.g. 1h 53m)
+	 * @return   string   The HTML and filters
+	 */
+	public function get_countdown_content( $wording, $product, $countdown ) {
+		$countdown_html = sprintf(
+			'<div class="dispatch-countdown__inner">
+				<p>
+					%1$s
+					<span
+						class="dispatch-countdown__time"
+						id="dispatch-countdown__time"
+						data-for="%2$s"
+					>
+						%3$s
+					</span>
+				</p>
+			</div>',
+			esc_html( $wording ),
+			esc_attr( $product ),
+			esc_html( $countdown )
+		);
+
+		return apply_filters(
+			'dispatch_countdown_content',
+			$countdown_html,
+			$wording,
+			$product,
+			$countdown
+		);
+
+	}
+
+	/**
 	 * Countdown function
 	 *
-	 * Works out what the countdown should say. Should return 1h 13m or false.
+	 * Works out what the countdown should say.
 	 *
 	 * @since    1.0.0
+	 * @return   string|boolean   '1h 13m'|false
 	 */
 	public function countdown() {
 
@@ -152,6 +194,7 @@ class Dispatch_Countdown_Public {
 	 * Should display for product
 	 *
 	 * @since    1.0.0
+	 * @return   boolean   Whether or not we should display the countdown
 	 */
 	private function should_display() {
 
@@ -163,6 +206,7 @@ class Dispatch_Countdown_Public {
 	 * Get time settings
 	 *
 	 * @since    1.0.0
+	 * @return   array   An array of times  e.g. [ 'monday' => '10:00-12:00' ]
 	 */
 	public function get_time_settings() {
 
@@ -215,8 +259,9 @@ class Dispatch_Countdown_Public {
 	/**
 	 * Get product
 	 *
-	 * @since     1.0.0
-	 * @param int $id ID of product.
+	 * @since                 1.0.0
+	 * @param   int           $id ID of product
+	 * @return  object|null   $this->product
 	 */
 	public function get_product( $id = false ) {
 
@@ -235,8 +280,9 @@ class Dispatch_Countdown_Public {
 	/**
 	 * Get product
 	 *
-	 * @since     1.0.0
-	 * @param int $id ID of product.
+	 * @since                 1.0.0
+	 * @param   int           $id ID of product.
+	 * @return  object|null   $this->product
 	 */
 	public function set_product( $id = false ) {
 
@@ -260,7 +306,8 @@ class Dispatch_Countdown_Public {
 	/**
 	 * Check if product is purchasable
 	 *
-	 * @since    1.0.0
+	 * @since           1.0.0
+	 * @return   bool   Whether or not the current product is purchasable
 	 */
 	public function product_is_purchasable() {
 
@@ -271,7 +318,8 @@ class Dispatch_Countdown_Public {
 	/**
 	 * Check if product is blacklisted
 	 *
-	 * @since    1.0.0
+	 * @since           1.0.0
+	 * @return   bool   Whether or not the current product is blacklisted
 	 */
 	public function product_is_blacklisted() {
 

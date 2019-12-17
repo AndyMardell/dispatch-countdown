@@ -65,11 +65,35 @@ add_action( 'init', 'your_theme_move_dispatch_countdown' );
 Replacing `your_theme_before_main_container` with whichever hook you wish
 
 
+## Changing the HTML output
+
+There are a few filters available to override certain parts of the output. The
+main filter is `dispatch_countdown_content` and can be used as follows:
+
+```php
+/**
+ * Change countdown HTML output
+ *
+ * NOTE: You must include an element with the id of `dispatch-countdown__time`
+ * as javascript uses this to update the countdown.
+ */
+ function your_theme_dispatch_countdown_content ( $html, $wording, $product, $countdown ) {
+ 	$countdown_html  = esc_html( $wording );
+ 	$countdown_html .= '&nbsp;<span id="dispatch-countdown__time" data-for="' . esc_attr( $product ) . '">';
+ 	$countdown_html .= esc_html( $countdown );
+ 	$countdown_html .= '</span>';
+
+ 	return $countdown_html;
+ }
+ add_filter( 'dispatch_countdown_content', 'your_theme_dispatch_countdown_content', 10, 4 );
+```
+
 ## Changelog
 
 ### 1.0.7 (Pre-release)
 * Update docs
 * Add POT file for translations
+* Adds filters to main output
 
 ### 1.0.6
 * Allow dispatch countdown hook to be overridden

@@ -148,6 +148,7 @@ class Dispatch_Countdown {
 	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.
 	 *
+	 * @since    1.0.6 Allow hook override by exposing the instance
 	 * @since    1.0.0
 	 * @access   private
 	 */
@@ -219,7 +220,7 @@ class Dispatch_Countdown {
 	/**
 	 * Get an instance of the public class
 	 *
-	 * @since 1.0.6
+	 * @since 1.0.6 Allow hook override by exposing the instance
 	 * @return object|Dispatch_Countdown_Public
 	 */
 	public static function get_public_instance() {
