@@ -90,7 +90,7 @@ main filter is `dispatch_countdown_content` and can be used as follows:
 
 ## Changelog
 
-### 1.0.7 (Pre-release)
+### 1.0.7
 * Update docs
 * Add POT file for translations
 * Adds filters to main output
