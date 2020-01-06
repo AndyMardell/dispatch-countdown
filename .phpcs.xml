@@ -4,6 +4,8 @@
 	<description>A Slightly Modified WPCS</description>
 
 	<exclude-pattern>vendor/*</exclude-pattern>
+	<exclude-pattern>*.js</exclude-pattern><!-- Let eslint/prettier handle js -->
+	<exclude-pattern>*.css</exclude-pattern>
 
 	<rule ref="WordPress-Core" />
 

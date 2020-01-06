@@ -1,12 +1,10 @@
 {
     "name": "andymardell/dispatch-countdown",
     "description": "Displays x hours left for same day dispatch on WooCommerce shop pages",
-    "authors": [
-        {
-            "name": "Andy Mardell",
-            "email": "andy@mardell.me"
-        }
-    ],
+    "authors": [{
+        "name": "Andy Mardell",
+        "email": "andy@mardell.me"
+    }],
     "require": {
         "khill/php-duration": "^1.0"
     },

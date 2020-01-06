@@ -21,7 +21,7 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.7 Remove loader in favour of native WP add_action/add_filter
+ * @since      1.0.8 Remove loader in favour of native WP add_action/add_filter
  * @since      1.0.0
  * @package    Dispatch_Countdown
  * @subpackage Dispatch_Countdown/includes
@@ -71,7 +71,7 @@ class Dispatch_Countdown {
 	 * Set the plugin name and the plugin version that can be used throughout the
 	 * plugin and load dependencies.
 	 *
-	 * @since    1.0.7 Run locale and hooks from $this->run()
+	 * @since    1.0.8 Run locale and hooks from $this->run()
 	 * @since    1.0.0
 	 */
 	public function __construct() {
@@ -124,7 +124,7 @@ class Dispatch_Countdown {
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
-	 * @since    1.0.7 Use native WP add_action and filter instead of loader
+	 * @since    1.0.8 Use native WP add_action and filter instead of loader
 	 * @since    1.0.0
 	 * @access   private
 	 */
@@ -144,7 +144,7 @@ class Dispatch_Countdown {
 	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.
 	 *
-	 * @since    1.0.7 Use native WP add_action instead of loader
+	 * @since    1.0.8 Use native WP add_action instead of loader
 	 * @since    1.0.6 Allow hook override by exposing the instance
 	 * @since    1.0.0
 	 * @access   private
@@ -219,7 +219,7 @@ class Dispatch_Countdown {
 	/**
 	 * Get an instance of the admin class
 	 *
-	 * @since 1.0.7 Allow hook override by exposing the instance
+	 * @since 1.0.8 Allow hook override by exposing the instance
 	 * @return object|Dispatch_Countdown_Admin
 	 */
 	public static function get_admin_instance() {

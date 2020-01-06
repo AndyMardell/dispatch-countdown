@@ -1,11 +1,5 @@
-/* global jQuery */
+;(function($) {
+  'use strict'
 
-(function ($) {
-	'use strict'
-
-	$(
-		function () {
-
-		}
-	)
-})( jQuery )
+  $(function() {})
+})(jQuery)

@@ -4,7 +4,7 @@ Tags: woocommerce, dispatch, countdown
 Requires at least: 4.0
 Tested up to: 5.3
 Requires PHP: 5.6
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv3 or later License
 URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -86,6 +86,11 @@ main filter is `dispatch_countdown_content` and can be used as follows:
 
 
 == Changelog ==
+
+= 1.0.8 =
+* Removes loader in favour of native WordPress add_filter/add_action
+* Expose admin instance for devs
+* Use prettier and eslint for JS development
 
 = 1.0.7 =
 * Update docs

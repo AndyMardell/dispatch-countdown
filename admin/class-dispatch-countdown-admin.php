@@ -80,6 +80,7 @@ class Dispatch_Countdown_Admin {
 	public function add_settings_section( $sections ) {
 
 		$sections['dispatch_countdown'] = __( 'Dispatch Countdown', 'dispatch-countdown' );
+
 		return $sections;
 
 	}

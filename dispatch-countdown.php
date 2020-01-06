@@ -12,7 +12,7 @@
  * @wordpress-plugin
  * Plugin Name:       Dispatch Countdown
  * Description:       Displays x hours left for same day dispatch on WooCommerce shop pages.
- * Version:           1.0.7
+ * Version:           1.0.8
  * Author:            Andy Mardell
  * Author URI:        mardell.me
  * Text Domain:       dispatch-countdown
@@ -31,7 +31,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
  */
-define( 'DISPATCH_COUNTDOWN_VERSION', '1.0.7' );
+define( 'DISPATCH_COUNTDOWN_VERSION', '1.0.8' );
 
 /**
  * The core plugin class that is used to define internationalization,

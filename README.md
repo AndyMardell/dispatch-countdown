@@ -5,12 +5,12 @@
 A plugin which allows you to display a countdown banner on your WooCommerce product pages.
 
 | Contributors      | mardellme                                         |
-|-------------------|---------------------------------------------------|
+| ----------------- | ------------------------------------------------- |
 | Tags              | woocommerce, dispatch, countdown                  |
 | Requires at least | 4.0                                               |
 | Tested up to      | 5.3                                               |
 | Requires PHP      | 5.6                                               |
-| Stable tag        | 1.0.7                                             |
+| Stable tag        | 1.0.8                                             |
 | License           | GPLv3 or later License                            |
 | URI               | http://www.gnu.org/licenses/gpl-3.0.html          |
 | Plugin URL        | https://wordpress.org/plugins/dispatch-countdown/ |
@@ -32,7 +32,6 @@ on GitHub.
 1. Upload the plugin files to the `/wp-content/plugins/dispatch-countdown` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Use the WooCommerce->Settings->Product Settings->Dispatch Countdown screen to configure the plugin
-
 
 ## Moving the countdown
 
@@ -64,7 +63,6 @@ add_action( 'init', 'your_theme_move_dispatch_countdown' );
 
 Replacing `woocommerce_before_main_content` with whichever hook you wish
 
-
 ## Changing the HTML output
 
 There are a few filters available to override certain parts of the output. The
@@ -90,30 +88,44 @@ main filter is `dispatch_countdown_content` and can be used as follows:
 
 ## Changelog
 
+### 1.0.8
+
+- Removes loader in favour of native WordPress add_filter/add_action
+- Expose admin instance for devs
+- Use prettier and eslint for JS development
+
 ### 1.0.7
-* Update docs
-* Add POT file for translations
-* Adds filters to main output
+
+- Update docs
+- Add POT file for translations
+- Adds filters to main output
 
 ### 1.0.6
-* Allow dispatch countdown hook to be overridden
-* Update documentation with how to move
+
+- Allow dispatch countdown hook to be overridden
+- Update documentation with how to move
 
 ### 1.0.5
-* Remove some dist files
+
+- Remove some dist files
 
 ### 1.0.4
-* No changes - deployment tests only
+
+- No changes - deployment tests only
 
 ### 1.0.3
-* No changes - deployment tests only
+
+- No changes - deployment tests only
 
 ### 1.0.2
-* Added icons
-* Added screenshots
+
+- Added icons
+- Added screenshots
 
 ### 1.0.1
-* Updated readme.txt to adhere to WordPress standards
+
+- Updated readme.txt to adhere to WordPress standards
 
 ### 1.0.0
-* Initial release.
+
+- Initial release.
