@@ -67,7 +67,7 @@ main filter is `dispatch_countdown_content` and can be used as follows:
 `/**
  * Change countdown HTML output
  *
- * NOTE: You must include an element with the id of `dispatch-countdown__time`
+ * NOTE: You must include an element with the id of 'dispatch-countdown__time'
  * as javascript uses this to update the countdown.
  */
  function your_theme_dispatch_countdown_content ( $html, $wording, $product, $countdown ) {

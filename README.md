@@ -57,12 +57,12 @@ function your_theme_move_dispatch_countdown() {
 	remove_action( 'woocommerce_before_single_product', array( $dispatch_countdown, 'display_countdown' ) );
 
 	// Add the action back where you like
-	add_action( 'your_theme_before_main_container', array( $dispatch_countdown, 'display_countdown' ) );
+	add_action( 'woocommerce_before_main_content', array( $dispatch_countdown, 'display_countdown' ) );
 }
 add_action( 'init', 'your_theme_move_dispatch_countdown' );
 ```
 
-Replacing `your_theme_before_main_container` with whichever hook you wish
+Replacing `woocommerce_before_main_content` with whichever hook you wish
 
 
 ## Changing the HTML output
