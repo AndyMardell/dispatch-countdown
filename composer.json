@@ -1,15 +1,17 @@
 {
-    "name": "andymardell/dispatch-countdown",
-    "description": "Displays x hours left for same day dispatch on WooCommerce shop pages",
-    "authors": [{
-        "name": "Andy Mardell",
-        "email": "andy@mardell.me"
-    }],
-    "require": {
-        "khill/php-duration": "^1.0"
-    },
-    "require-dev": {
-        "squizlabs/php_codesniffer": "^3.5",
-        "wp-coding-standards/wpcs": "^2.2"
+  "name": "andymardell/dispatch-countdown",
+  "description": "Displays x hours left for same day dispatch on WooCommerce shop pages",
+  "authors": [
+    {
+      "name": "Andy Mardell",
+      "email": "andy@mardell.me"
     }
+  ],
+  "require": {
+    "khill/php-duration": "^1.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.5",
+    "wp-coding-standards/wpcs": "^2.2"
+  }
 }

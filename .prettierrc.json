@@ -3,8 +3,6 @@
   "useTabs": false,
   "semi": false,
   "singleQuote": true,
-  "bracketSpacing": true,
-  "jsxBracketSameLine": false,
   "requirePragma": false,
   "proseWrap": "preserve",
   "arrowParens": "avoid"
